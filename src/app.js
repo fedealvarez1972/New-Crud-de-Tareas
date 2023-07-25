@@ -8,7 +8,8 @@ require('dotenv').config();
 const cors = require('cors');
 
 // ejecutamos el modelo todos asi se crea la tabla en postgres
-Todos;
+Todos
+
 
 
 // Probar conexion a la base de datos
@@ -45,7 +46,7 @@ app.get ('/', (req, res) => {
 });
 
 // Crear un usuario
-app.post('/api/v1/todos', async (req, res) => {
+app.post('/todos', async (req, res) => {
     try {
       const {title, description} = req.body;
       await Todos.create({title, description});
@@ -56,7 +57,7 @@ app.post('/api/v1/todos', async (req, res) => {
 });
 
 // Obtener todas las tareas
-app.get('/api/v1/todos', async (req, res) => {
+app.get('/todos', async (req, res) => {
     try {
       const todos = await Todos.findAll();
       res.json(todos);
@@ -66,7 +67,7 @@ app.get('/api/v1/todos', async (req, res) => {
   });
 
 // obtener una tarea por su ID
-app.get('/api/v1/todos/:id', async (req, res) => {
+app.get('/todos/:id', async (req, res) => {
     try {
       const { id } = req.params;
       console.log(req.params);
@@ -79,7 +80,7 @@ app.get('/api/v1/todos/:id', async (req, res) => {
 
   // actualizar UPDATE //
 // UPDATE todos SET title = "xvalor", description = "xvalor" WHERE id = x //
-app.put('/api/v1/todos/:id', async (req,res) =>{
+app.put('/todos/:id', async (req,res) =>{
     try {
       const {id} = req.params;
       const { completed } = req.body;
@@ -95,7 +96,7 @@ app.put('/api/v1/todos/:id', async (req,res) =>{
 
 // ELIMINAR UNA TAREA //
 // DELETE FROM todos WHERE id=3
-app.delete('/api/v1/todos/:id', async (req, res) =>{
+app.delete('/todos/:id', async (req, res) =>{
     try {
       const {id} = req.params;
       await Todos.destroy({
@@ -112,3 +113,4 @@ app.listen(PORT,()=>{
 });
 
 console.log(process.env);
+
