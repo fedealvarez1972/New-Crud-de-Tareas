@@ -5,6 +5,7 @@ const db = require ('./utils/database');
 // importar modelo Todos
 const Todos = require('./models/todos.model');
 require('dotenv').config();
+const cors = require('cors');
 
 // ejecutamos el modelo todos asi se crea la tabla en postgres
 Todos;
@@ -27,7 +28,10 @@ db.sync()
 
 const app = express();
 
+app.use(cors());
+
 app.use(express.json());
+
 
 
 
